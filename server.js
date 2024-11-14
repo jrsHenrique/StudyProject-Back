@@ -1,26 +1,18 @@
+// server.js
 const express = require('express');
-const bodyParser = require('body-parser');
-const cors = require('cors');
+const dotenv = require('dotenv');
+const { connectDB } = require('./config/db');
+const userRoutes = require('./routes/userRoutes');
+
+dotenv.config();
+connectDB();
 
 const app = express();
-app.use(cors());
-app.use(bodyParser.json());
+app.use(express.json());
 
-const PORT = 5000;
+app.use('/api/users', userRoutes);
 
-// Endpoint para receber o cadastro de usuário
-app.post('/api/cadastro', (req, res) => {
-  const { nome, email, senha, telefone } = req.body;
-
-  // Aqui você pode salvar os dados no banco de dados
-  // Exemplo com MongoDB:
-  // const novoUsuario = new Usuario({ nome, email, senha, telefone });
-  // novoUsuario.save();
-
-  console.log('Dados recebidos:', req.body);
-  res.status(200).json({ message: 'Cadastro realizado com sucesso!' });
-});
-
+const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
-  console.log(`Servidor rodando em http://localhost:${PORT}`);
+  console.log(`Servidor rodando na porta ${PORT}`);
 });
