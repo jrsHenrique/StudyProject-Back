@@ -1,0 +1,28 @@
+datasource db{
+    provider: "sqlserver"
+    url: sqlserver://${localhost}:${1434};database=${master};user=${sa};password=${EuOdeioOShelby123!};trustServerCertificate=true;encrypt=true
+}
+
+generator client{
+    provider = "prisma-client-js"
+}
+
+model User {
+    id Int @id default(autoincrement())
+    name String 
+    email String @unique
+    password String
+    phone String
+    products Product[]
+}
+
+model Product{
+    id Int @id default(autoincrement())
+    name String 
+    description String
+    price Float
+    quantity Int
+    userId Int
+    user User @relation(fields: [userId], references: [id])
+}
+
