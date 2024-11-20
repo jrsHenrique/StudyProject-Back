@@ -1,0 +1,8 @@
+/home/mrjones/Desktop/comp/Projeto de Estudo/backend/api/obj/Debug/net9.0/RestfulApiDemo.csproj.AssemblyReference.cache
+/home/mrjones/Desktop/comp/Projeto de Estudo/backend/api/obj/Debug/net9.0/RestfulApiDemo.GeneratedMSBuildEditorConfig.editorconfig
+/home/mrjones/Desktop/comp/Projeto de Estudo/backend/api/obj/Debug/net9.0/RestfulApiDemo.AssemblyInfoInputs.cache
+/home/mrjones/Desktop/comp/Projeto de Estudo/backend/api/obj/Debug/net9.0/RestfulApiDemo.AssemblyInfo.cs
+/home/mrjones/Desktop/comp/Projeto de Estudo/backend/api/obj/Debug/net9.0/RestfulApiDemo.csproj.CoreCompileInputs.cache
+/home/mrjones/Desktop/comp/Projeto de Estudo/backend/api/obj/Debug/net9.0/RestfulApiDemo.MvcApplicationPartsAssemblyInfo.cs
+/home/mrjones/Desktop/comp/Projeto de Estudo/backend/api/obj/Debug/net9.0/RestfulApiDemo.MvcApplicationPartsAssemblyInfo.cache
+/home/mrjones/Desktop/comp/Projeto de Estudo/backend/api/obj/Debug/net9.0/RestfulApiDemo.sourcelink.json
