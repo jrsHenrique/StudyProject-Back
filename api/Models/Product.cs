@@ -1,4 +1,4 @@
-namespace YourNamespace.Models
+namespace api.Models
 {
     public class Product
     {

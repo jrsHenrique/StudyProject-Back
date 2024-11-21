@@ -1,9 +1,9 @@
 using System.Collections.Generic;
 using System.Linq;
-using YourNamespace.Data;
-using YourNamespace.Models;
+using api.Data;
+using api.Models;
 
-namespace YourNamespace.Repositories
+namespace api.Repositories
 {
     public class UserRepository : IUserRepository
     {

@@ -1,8 +1,8 @@
 using Microsoft.AspNetCore.Mvc;
-using YourNamespace.Services;
-using YourNamespace.Models;
+using api.Services;
+using api.Models;
 
-namespace YourNamespace.Controllers
+namespace api.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]

@@ -1,7 +1,7 @@
 using Microsoft.EntityFrameworkCore;
-using YourNamespace.Models;
+using api.Models;
 
-namespace YourNamespace.Data
+namespace api.Data
 {
     public class AppDbContext : DbContext
     {

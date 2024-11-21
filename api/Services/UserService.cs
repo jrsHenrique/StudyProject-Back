@@ -1,8 +1,8 @@
 using System.Collections.Generic;
-using YourNamespace.Models;
-using YourNamespace.Repositories;
+using api.Models;
+using api.Repositories;
 
-namespace YourNamespace.Services
+namespace api.Services
 {
     public class UserService : IUserService
     {

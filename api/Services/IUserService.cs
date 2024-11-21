@@ -1,7 +1,7 @@
 using System.Collections.Generic;
-using YourNamespace.Models;
+using api.Models;
 
-namespace YourNamespace.Services
+namespace api.Services
 {
     public interface IUserService
     {
