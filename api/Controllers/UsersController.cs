@@ -18,7 +18,9 @@ namespace api.Controllers
         [HttpGet]
         public IActionResult GetUsers()
         {
-            return Ok(_userService.GetAllUsers());
+            var users = _userService.GetAllUsers();
+            System.Console.WriteLine(_userService);
+            return Ok(users);
         }
 
         [HttpPost]
