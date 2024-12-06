@@ -2,6 +2,7 @@ const express = require("express");
 const axios = require("axios");
 const swaggerJsDoc = require("swagger-jsdoc");
 const swaggerUi = require("swagger-ui-express");
+const cors = require("cors");
 
 const axiosInstance = axios.create({
   httpsAgent: new (require('https').Agent)({  
@@ -29,6 +30,8 @@ const swaggerOptions = {
   },
   apis: ["./server.js"], // Caminho para as anotações Swagger
 };
+
+app.use(cors());
 
 const swaggerDocs = swaggerJsDoc(swaggerOptions);
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocs));
@@ -141,7 +144,7 @@ app.post("/insert-product", async (req, res) => {
  *           schema:
  *             type: object
  *             properties:
- *               username:
+ *               email:
  *                 type: string
  *               password:
  *                 type: string
@@ -153,26 +156,33 @@ app.post("/insert-product", async (req, res) => {
  *       500:
  *         description: Erro ao fazer login
  */
-app.post("/login", async (req, res) => {
-  try {
-    const { username, password } = req.body;
+app.post('/login', async (req, res) => {
+  const { email, password } = req.body;
 
-    // Simulando envio para API C#
-    const response = await axiosInstance.post("http://localhost:5132/api/users/login", {
-      username,
+  // Verifique se o email e senha foram fornecidos
+  if (!email || !password) {
+    return res.status(400).json({ message: 'Email e senha são obrigatórios' });
+  }
+
+  try {
+    // Enviar a requisição para a API C# que valida as credenciais
+    const response = await axiosInstance.post("http://localhost:5132/api/login", {
+      email,
       password,
     });
 
-    if (response.data.success) {
-      res.status(200).json({ message: "Login bem-sucedido", token: response.data.token });
+    // Se a resposta for bem-sucedida, o login é bem-sucedido
+    if (response.status === 200) {
+      res.json({ message: 'Login bem-sucedido', data: response.data });
     } else {
-      res.status(401).json({ message: "Credenciais inválidas" });
+      res.status(401).json({ message: 'Credenciais inválidas' });
     }
   } catch (error) {
     console.error("Erro ao fazer login:", error.response || error);
-    res.status(500).json({ message: "Erro ao fazer login", error });
+    res.status(500).json({ message: 'Erro ao fazer login', error });
   }
 });
+
 
 // Rota inicial
 /**

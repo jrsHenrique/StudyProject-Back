@@ -1,7 +1,6 @@
-using Microsoft.EntityFrameworkCore;
-using api.Data;
-using api.Repositories;
-using api.Services;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
 
 namespace api
 {
@@ -18,6 +17,20 @@ namespace api
             // Adicionar Repositórios e Serviços
             builder.Services.AddScoped<IUserRepository, UserRepository>();
             builder.Services.AddScoped<IUserService, UserService>();
+            builder.Services.AddScoped<IJwtService, JwtService>(); // Serviço JWT
+
+            // Configuração de autenticação JWT
+            builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+                .AddJwtBearer(options =>
+                {
+                    options.TokenValidationParameters = new TokenValidationParameters
+                    {
+                        ValidateIssuer = false,
+                        ValidateAudience = false,
+                        ValidateLifetime = true,
+                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["JWTSettings:Secret"]))
+                    };
+                });
 
             builder.Services.AddControllers();
             builder.Services.AddEndpointsApiExplorer();
@@ -32,6 +45,8 @@ namespace api
             }
 
             app.UseHttpsRedirection();
+
+            app.UseAuthentication(); // Adicionar autenticação
             app.UseAuthorization();
             app.MapControllers();
             app.Run();
